@@ -1,29 +1,43 @@
   var LinkedList = function(){
   var list = {};
-  list.head = 0;
-  list.tail = 0;
+  list.head = null;
+  list.tail = null;
+  var tailIndex = 0;
+  var headIndex = 0;
 
   list.addToTail = function(value){
-    //If tail is null, set tail to 0
-    if (list.tail === null){
-      list.tail = 0;
-    }
     //Create node at current tail
-    list[list.tail] = Node(value);
+    list[tailIndex] = Node(value);
+    list.tail = Node(value);
 
-    //If list's tail is 0,
-    if (list.tail-list.head > 0){
-      list[list.tail-1].next = list[list.tail].value;
+    if (list.head === null){
+      list[headIndex] = Node(value);
+      list.head = Node(value);
     }
 
+    //If list has more than 1 node, assign pointer to next node
+    if (tailIndex - headIndex > 0 ){
+      list[tailIndex-1].next = list[tailIndex];
+    }
     //Go to next tail
-    list.tail++;
+    tailIndex++;
   };
 
   list.removeHead = function(){
+    var result = list[headIndex];
+    delete list[headIndex];
+    headIndex++;
+    list.head = list[headIndex];
+    return result.value;
   };
 
   list.contains = function(target){
+    for(var key in list){
+      if(list[key]['value'] === target){
+        return true;
+      }
+    }
+    return false;
   };
 
   return list;
