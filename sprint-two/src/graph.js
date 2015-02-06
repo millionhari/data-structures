@@ -27,11 +27,25 @@ Graph.prototype.removeNode = function(node){
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
+  //search for fromnode (loop through this.nodes)
+  var result = false;
+  _.each(this.nodes, function(element, index, list){
+    //look at the edges array for the from node (loop)
+    if (element[0] === fromNode) {
+      _.each(element[1], function(item, i, l){
+        if (item[0] === toNode) {
+          result = true;
+        }
+      });
+    }
+  });
+  return result;
+      //if we find toNode in the edges array, return true
 
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-  //look through nodes array
+
   var indexTo;
 
   //to node
