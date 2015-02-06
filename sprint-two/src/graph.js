@@ -64,9 +64,31 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
+  //search this.nodes (loop)
+  _.each(this.nodes, function(element, index, list){
+    //if element[0] === fromNode
+    if(element[0] === fromNode){
+      //loop element[1]
+      _.each(element[1], function(item, i, collection){
+        //if item === toNode
+        if(item[0] === toNode){
+          //splice item
+          item.splice(0,1);
+        }
+
+      });
+
+    }
+
+  });
 };
 
 Graph.prototype.forEachNode = function(cb){
+  //loop through this.nodes
+  _.each(this.nodes, function(element, index, list){
+    //run cb(element[0])
+    cb(element[0]);
+  });
 };
 
 /*
