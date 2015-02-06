@@ -7,7 +7,6 @@ var Graph = function(){
 Graph.prototype.addNode = function(node){
   var toArr = [node, []];
   this.nodes.push(toArr);
-  console.log(this.nodes);
 };
 
 Graph.prototype.contains = function(node){

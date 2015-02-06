@@ -40,7 +40,11 @@ describe('graph', function() {
     graph.addNode('apples');
     graph.addNode('satsumas');
     graph.addEdge('satsumas', 'apples');
-    expect(graph.hasEdge('apples', 'satsumas')).to.equal(true);
+    expect(graph.hasEdge('apples', 'satsumas')).to.equal(false);
+    graph.removeEdge('satsumas', 'apples');
+    expect(graph.hasEdge('satsumas', 'apples')).to.equal(false);
+
+
   });
 
   it('should execute a callback on each node in the graph', function() {
