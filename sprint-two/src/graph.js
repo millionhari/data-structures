@@ -5,8 +5,9 @@ var Graph = function(){
 };
 
 Graph.prototype.addNode = function(node){
-  var toArr = [node, null];
+  var toArr = [node, []];
   this.nodes.push(toArr);
+  console.log(this.nodes);
 };
 
 Graph.prototype.contains = function(node){
@@ -35,14 +36,21 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 
 Graph.prototype.addEdge = function(fromNode, toNode){
   //look through nodes array
-  _.each(this.nodes, function(element){
-    if (element[0] === fromNode){
+  var indexTo;
 
+  //to node
+  _.each(this.nodes, function(element, index){
+    if (element[0] === toNode){
+      indexTo = index;
     }
   });
-  var indexFrom = _.indexOf(this.nodes[], fromNode);
-  var indexTo = _.indexOf(this.nodes, toNode);
-  this.nodes[indexFrom][1] = this.nodes[indexTo];
+
+  //from node
+  _.each(this.nodes, function(element, index, collection){
+    if (element[0] === fromNode){
+      element[1].push(collection[indexTo]);
+    }
+  });
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
