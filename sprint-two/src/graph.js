@@ -19,10 +19,6 @@ Graph.prototype.contains = function(node){
   });
   return bool;
 
-  // if(_.indexOf(this.nodes, node) > -1){
-  //   return true;
-  // }
-  // return false;
 };
 
 Graph.prototype.removeNode = function(node){
