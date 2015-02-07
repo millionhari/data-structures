@@ -55,7 +55,19 @@ BinarySearchTree.prototype.depthFirstLog = function(cb){
 
 //worth some hi-chews
 BinarySearchTree.prototype.breadthFirstLog = function(cb){
+  var nodes = [this];
 
+  while(nodes.length){
+    if(nodes[0].left) {
+      nodes.push(nodes[0].left);
+    }
+    if(nodes[0].right) {
+      nodes.push(nodes[0].right);
+    }
+    cb(nodes[0].value);
+    nodes.shift();
+
+  }
 };
 
 //worth lots of hi-chews
