@@ -26,25 +26,15 @@
   };
 
   list.contains = function(target){
-    if(list.head === null){
-      return false;
-    }
-    // If value === target, return true
-    if(this.value === target){
-      return true;
-    }
-    // If next pointer is equal to null, return false
-    if(this.next === null){
-      return false;
-    }
-    // If list has a head, run contain on head
-    if(this.head){
-      return list.contains.call(list.head, target);
-    } else {
-    // If list does not have a head, run contain on next.
-      return list.contains.call(this.next, target);
+  var node = list.head;
 
-    }
+  while(node){
+     if(node.value === target){
+      return true;
+     }
+     node = node.next;
+   }
+   return false;
   };
 
   return list;
