@@ -26,25 +26,25 @@
   };
 
   list.contains = function(target){
-    //look to see if next node is null
-      if (this.head){
-        return this.head.contains;
-      } else {
-        if(this.next === null){
-         // return false if true
-         return false;
-        }
-        //compare value to target
-        if(target === this.value){
-         //return true if found
-         return true;
-        } else {
-          return this.next.contains(target);
-        }
-      }
-    //else
+    if(list.head === null){
+      return false;
+    }
+    // If value === target, return true
+    if(this.value === target){
+      return true;
+    }
+    // If next pointer is equal to null, return false
+    if(this.next === null){
+      return false;
+    }
+    // If list has a head, run contain on head
+    if(this.head){
+      return list.contains.call(list.head, target);
+    } else {
+    // If list does not have a head, run contain on next.
+      return list.contains.call(this.next, target);
 
-      //recurse on next node
+    }
   };
 
   return list;
